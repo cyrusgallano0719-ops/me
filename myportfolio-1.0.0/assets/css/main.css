@@ -1171,6 +1171,241 @@ section,
   align-items: center;
 }
 
+/*--------------------------------------------------------------
+# Floating Hire Me Button
+--------------------------------------------------------------*/
+.hire-me-btn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #007bff, #0056b3);
+  color: white;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(0, 123, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 4px;
+  transition: all 0.3s ease, box-shadow 0.3s ease;
+  z-index: 99;
+  min-height: 65px;
+  padding: 0;
+  overflow: hidden;
+}
+
+.hire-me-btn:hover {
+  transform: scale(1.15) translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0, 123, 255, 0.5);
+  background: linear-gradient(135deg, #0056b3, #003d82);
+}
+
+.hire-me-btn .btn-text {
+  font-size: 12px;
+  line-height: 1.2;
+  text-align: center;
+  letter-spacing: 0.5px;
+  min-width: 100%;
+  transition: opacity 0.3s ease;
+}
+
+.hire-me-btn i {
+  font-size: 20px;
+  opacity: 0.8;
+}
+
+/* Text rotation on hover */
+.hire-me-btn:hover .btn-text {
+  animation: textRotate 0.4s ease;
+}
+
+@keyframes textRotate {
+  0% { opacity: 1; transform: rotateY(0deg); }
+  50% { opacity: 0; transform: rotateY(90deg); }
+  50.1% { content: attr(data-text); }
+  100% { opacity: 1; transform: rotateY(0deg); }
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .hire-me-btn {
+    bottom: 20px;
+    right: 20px;
+    width: 55px;
+    height: 55px;
+    font-size: 11px;
+  }
+
+  .hire-me-btn i {
+    font-size: 18px;
+  }
+}
+
+/*--------------------------------------------------------------
+# Contact Modal
+--------------------------------------------------------------*/
+.contact-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  backdrop-filter: blur(3px);
+  animation: fadeIn 0.3s ease;
+}
+
+.contact-modal.active {
+  display: flex;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.contact-modal .modal-content {
+  background: white;
+  border-radius: 12px;
+  padding: 40px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  position: relative;
+  animation: slideUp 0.4s ease;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.contact-modal .modal-close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: #999;
+  transition: color 0.2s ease;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contact-modal .modal-close:hover {
+  color: #000;
+}
+
+.contact-modal .modal-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 25px;
+  color: #000;
+}
+
+.contact-modal .modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.contact-modal .form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-modal .form-control {
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: var(--default-font);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-modal .form-control:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+  outline: none;
+}
+
+.contact-modal .form-control::placeholder {
+  color: #999;
+}
+
+.contact-modal .btn-submit {
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #007bff, #0056b3);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+.contact-modal .btn-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+  background: linear-gradient(135deg, #0056b3, #003d82);
+}
+
+.contact-modal .modal-footer {
+  text-align: center;
+  margin-top: 20px;
+  border-top: 1px solid #f0f0f0;
+  padding-top: 15px;
+}
+
+.contact-modal .modal-footer p {
+  margin: 0;
+  color: #aaa;
+}
+
+/* Mobile responsive */
+@media (max-width: 576px) {
+  .contact-modal .modal-content {
+    padding: 25px;
+  }
+
+  .contact-modal .modal-title {
+    font-size: 20px;
+  }
+
+  .contact-modal .form-control {
+    font-size: 16px;
+  }
+}
+
 .service-details ul i {
   font-size: 20px;
   margin-right: 8px;
@@ -1281,4 +1516,86 @@ section,
 
 .contact .php-email-form button[type=submit]:hover {
   background: color-mix(in srgb, var(--accent-color), transparent 20%);
+}
+
+/*--------------------------------------------------------------
+# Galaxy Toggle Switch
+--------------------------------------------------------------*/
+.galaxy-toggle-wrapper {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 998;
+}
+
+.galaxy-toggle-label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  gap: 8px;
+  color: var(--default-color);
+  font-size: 14px;
+}
+
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 26px;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.3s;
+  border-radius: 26px;
+}
+
+.toggle-slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.3s;
+  border-radius: 50%;
+}
+
+input:checked + .toggle-slider {
+  background-color: #8ab4f8;
+}
+
+input:checked + .toggle-slider:before {
+  transform: translateX(24px);
+}
+
+@media (max-width: 768px) {
+  .galaxy-toggle-wrapper {
+    top: 80px;
+    right: 20px;
+  }
+  
+  .galaxy-toggle-label span:last-child {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .galaxy-toggle-wrapper {
+    display: none;
+  }
 }

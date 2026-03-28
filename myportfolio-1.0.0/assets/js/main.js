@@ -161,4 +161,68 @@
 
   window.addEventListener("load", initSwiper);
 
+  /**
+   * Floating Hire Me Button - Text Rotation
+   */
+  const hireMeBtn = document.getElementById('hire-me-btn');
+  const btnText = hireMeBtn ? hireMeBtn.querySelector('.btn-text') : null;
+  const textOptions = ['Hire Me', "Let's Build", 'Available'];
+  let currentTextIndex = 0;
+  let hoverCount = 0;
+
+  if (hireMeBtn && btnText) {
+    hireMeBtn.addEventListener('mouseenter', () => {
+      hoverCount++;
+      currentTextIndex = (currentTextIndex + 1) % textOptions.length;
+      btnText.textContent = textOptions[currentTextIndex];
+    });
+
+    hireMeBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const modal = document.getElementById('contact-modal');
+      if (modal) {
+        modal.classList.add('active');
+      }
+    });
+  }
+
+  /**
+   * Contact Modal - Close functionality
+   */
+  const contactModal = document.getElementById('contact-modal');
+  const modalClose = document.getElementById('modal-close');
+  const modalContactForm = document.getElementById('modal-contact-form');
+
+  if (modalClose) {
+    modalClose.addEventListener('click', () => {
+      if (contactModal) {
+        contactModal.classList.remove('active');
+      }
+    });
+  }
+
+  // Close modal when clicking outside the content
+  if (contactModal) {
+    contactModal.addEventListener('click', (e) => {
+      if (e.target === contactModal) {
+        contactModal.classList.remove('active');
+      }
+    });
+  }
+
+  // Form submission handling
+  if (modalContactForm) {
+    modalContactForm.addEventListener('submit', (e) => {
+      // Formspree handles the submission, but we can add a loading state if needed
+      // The form will submit normally and redirect
+    });
+  }
+
+  // Close modal with Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && contactModal && contactModal.classList.contains('active')) {
+      contactModal.classList.remove('active');
+    }
+  });
+
 })();
