@@ -206,6 +206,8 @@ h6 {
   overflow-y: auto;
   transition: 0.3s;
   z-index: 998;
+  height: 100vh;
+  max-height: 100vh;
 }
 
 .navmenu a,
