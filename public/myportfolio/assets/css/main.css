@@ -19,22 +19,22 @@
 
 /* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
 :root { 
-  --background-color: #ffffff; /* Background color for the entire website, including individual sections */
-  --default-color: #212529; /* Default color used for the majority of the text content across the entire website */
-  --heading-color: #000000; /* Color for headings, subheadings and title throughout the website */
-  --accent-color: #000000; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
+  --background-color: #f2f2f2; /* Background color for the entire website, including individual sections */
+  --default-color: #2b6777; /* Default color used for the majority of the text content across the entire website */
+  --heading-color: #2b6777; /* Color for headings, subheadings and title throughout the website */
+  --accent-color: #52ab98; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
   --surface-color: #ffffff; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
   --contrast-color: #ffffff; /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
 }
 
 /* Nav Menu Colors - The following color variables are used specifically for the navigation menu. They are separate from the global colors to allow for more customization options */
 :root {
-  --nav-color: #5b5b5b;  /* The default color of the main navmenu links */
-  --nav-hover-color: #000000; /* Applied to main navmenu links when they are hovered over or active */
-  --nav-mobile-background-color: #f5f5f5; /* Used as the background color for mobile navigation menu */
+  --nav-color: #2b6777;  /* The default color of the main navmenu links */
+  --nav-hover-color: #52ab98; /* Applied to main navmenu links when they are hovered over or active */
+  --nav-mobile-background-color: #f2f2f2; /* Used as the background color for mobile navigation menu */
   --nav-dropdown-background-color: #ffffff; /* Used as the background color for dropdown items that appear when hovering over primary navigation items */
-  --nav-dropdown-color: #5b5b5b; /* Used for navigation links of the dropdown items in the navigation menu. */
-  --nav-dropdown-hover-color: #000000; /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
+  --nav-dropdown-color: #2b6777; /* Used for navigation links of the dropdown items in the navigation menu. */
+  --nav-dropdown-hover-color: #52ab98; /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
 }
 
 /* Color Presets - These classes override global colors when applied to any section or element, providing reuse of the sam color scheme. */
@@ -55,6 +55,37 @@
 /* Smooth scroll */
 :root {
   scroll-behavior: smooth;
+}
+
+/* Mobile-friendly touch targets */
+@media (max-width: 768px) {
+  button,
+  .btn,
+  a.btn,
+  input[type="button"],
+  input[type="submit"],
+  input[type="reset"] {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 12px 20px;
+    font-size: 16px;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  textarea,
+  select {
+    min-height: 44px;
+    padding: 10px 12px;
+    font-size: 16px;
+  }
+
+  a {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
 }
 
 /*--------------------------------------------------------------
@@ -166,6 +197,17 @@ h6 {
   color: var(--heading-color);
 }
 
+/* Mobile optimization for header */
+@media (max-width: 576px) {
+  .header .logo h1 {
+    font-size: 22px;
+  }
+
+  .header {
+    padding: 12px 0;
+  }
+}
+
 /*--------------------------------------------------------------
 # Navigation Menu
 --------------------------------------------------------------*/
@@ -196,6 +238,23 @@ h6 {
   transition: 0.3s;
   width: 300px;
   overflow: hidden;
+}
+
+@media (max-width: 576px) {
+  .navmenu {
+    width: 100%;
+    right: -100%;
+  }
+
+  .mobile-nav-toggle {
+    top: 15px;
+    right: 15px;
+    font-size: 28px;
+  }
+
+  .mobile-nav-active .mobile-nav-toggle {
+    right: 0;
+  }
 }
 
 .navmenu ul {
@@ -434,6 +493,26 @@ h6 {
   margin-bottom: 10px;
 }
 
+@media (max-width: 768px) {
+  .page-title {
+    padding: 60px 0;
+  }
+
+  .page-title h1 {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 576px) {
+  .page-title {
+    padding: 40px 0;
+  }
+
+  .page-title h1 {
+    font-size: 24px;
+  }
+}
+
 .page-title .breadcrumbs ol {
   display: flex;
   flex-wrap: wrap;
@@ -476,6 +555,22 @@ section,
   }
 }
 
+@media (max-width: 768px) {
+  section,
+  .section {
+    padding: 40px 0;
+    scroll-margin-top: 60px;
+  }
+}
+
+@media (max-width: 576px) {
+  section,
+  .section {
+    padding: 30px 0;
+    scroll-margin-top: 50px;
+  }
+}
+
 /*--------------------------------------------------------------
 # Global Section Titles
 --------------------------------------------------------------*/
@@ -495,6 +590,26 @@ section,
   margin-bottom: 0;
 }
 
+@media (max-width: 768px) {
+  .section-title {
+    padding-bottom: 40px;
+  }
+
+  .section-title h2 {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 576px) {
+  .section-title {
+    padding-bottom: 30px;
+  }
+
+  .section-title h2 {
+    font-size: 20px;
+  }
+}
+
 /*--------------------------------------------------------------
 # Portfolio Section
 --------------------------------------------------------------*/
@@ -505,6 +620,52 @@ section,
 
 .portfolio .portfolio-info p {
   font-size: 15px;
+}
+
+/* Mobile-first responsive portfolio */
+@media (max-width: 768px) {
+  .isotope-container {
+    position: relative !important;
+    height: auto !important;
+  }
+
+  .isotope-item {
+    position: relative !important;
+    left: 0 !important;
+    top: 0 !important;
+    margin-bottom: 20px;
+  }
+
+  .portfolio-info {
+    margin-bottom: 30px;
+  }
+
+  .portfolio-info .d-flex {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .portfolio-info img {
+    width: 60px !important;
+    height: 60px !important;
+    margin: 0 auto 15px !important;
+  }
+
+  .portfolio-info h3 {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  .portfolio .portfolio-info h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+
+  .portfolio .portfolio-info p {
+    font-size: 13px;
+    line-height: 18px;
+  }
 }
 
 .portfolio .portfolio-filters {
@@ -543,6 +704,17 @@ section,
   .portfolio .portfolio-filters li {
     font-size: 14px;
     margin: 0 5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .portfolio .portfolio-filters li {
+    font-size: 12px;
+    margin: 0 3px;
+  }
+
+  .portfolio .portfolio-filters {
+    margin: 0 auto 15px auto;
   }
 }
 
@@ -612,6 +784,33 @@ section,
   transform: scale(1.1);
 }
 
+/* Mobile-specific portfolio content improvements */
+@media (max-width: 768px) {
+  .portfolio .portfolio-content .portfolio-info {
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.7);
+  }
+
+  .portfolio .portfolio-content:hover img {
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 576px) {
+  .portfolio .portfolio-content .portfolio-info h4 {
+    font-size: 16px;
+  }
+
+  .portfolio .portfolio-content .portfolio-info p {
+    font-size: 12px;
+  }
+
+  .portfolio .portfolio-content .portfolio-info .preview-link,
+  .portfolio .portfolio-content .portfolio-info .details-link {
+    font-size: 22px;
+  }
+}
+
 /*--------------------------------------------------------------
 # Clients Section
 --------------------------------------------------------------*/
@@ -654,6 +853,21 @@ section,
   padding: 40px;
   box-shadow: 0px 0 30px rgba(0, 0, 0, 0.1);
   height: 100%;
+}
+
+@media (max-width: 576px) {
+  .services .service-item {
+    padding: 25px;
+  }
+
+  .services .service-item h3 {
+    font-size: 18px;
+  }
+
+  .services .service-item p {
+    font-size: 13px;
+    line-height: 20px;
+  }
 }
 
 .services .service-item .icon {
@@ -730,6 +944,25 @@ section,
 --------------------------------------------------------------*/
 .testimonials .section-header {
   margin-bottom: 40px;
+}
+
+@media (max-width: 576px) {
+  .testimonials .testimonial-item .testimonial-img {
+    width: 80px;
+    border-width: 3px;
+  }
+
+  .testimonials .testimonial-item h3 {
+    font-size: 18px;
+  }
+
+  .testimonials .testimonial-item h4 {
+    font-size: 12px;
+  }
+
+  .testimonials .testimonial-item p {
+    font-size: 13px;
+  }
 }
 
 .testimonials .testimonials-carousel,
@@ -829,6 +1062,16 @@ section,
   font-size: 24px;
 }
 
+@media (max-width: 576px) {
+  .about .content h2 {
+    font-size: 20px;
+  }
+
+  .about .content ul li {
+    margin-bottom: 15px;
+  }
+}
+
 .about .content ul {
   list-style: none;
   padding: 0;
@@ -860,6 +1103,25 @@ section,
   font-weight: 700;
   margin-top: 20px;
   margin-bottom: 20px;
+}
+
+@media (max-width: 576px) {
+  .resume .resume-title {
+    font-size: 20px;
+  }
+
+  .resume .resume-item h4 {
+    font-size: 16px;
+  }
+
+  .resume .resume-item h5 {
+    font-size: 14px;
+    padding: 5px 10px;
+  }
+
+  .resume .resume-item {
+    padding: 0 0 15px 15px;
+  }
 }
 
 .resume .resume-item {
@@ -919,6 +1181,53 @@ section,
   box-shadow: 0 3px 20px -2px rgba(0, 0, 0, 0.1);
   height: 100%;
   position: relative;
+}
+
+@media (max-width: 768px) {
+  .pricing .pricing-item {
+    padding: 40px 25px;
+  }
+
+  .pricing h3 {
+    font-size: 18px;
+  }
+
+  .pricing h4 {
+    font-size: 36px;
+  }
+
+  .pricing h4 sup {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 576px) {
+  .pricing .pricing-item {
+    padding: 25px 15px;
+  }
+
+  .pricing h3 {
+    font-size: 16px;
+  }
+
+  .pricing h4 {
+    font-size: 28px;
+  }
+
+  .pricing ul {
+    font-size: 13px;
+    line-height: 18px;
+  }
+
+  .pricing ul li {
+    padding: 8px 0;
+  }
+
+  .pricing .buy-btn {
+    padding: 10px 20px;
+    font-size: 14px;
+    min-height: 44px;
+  }
 }
 
 .pricing h3 {
@@ -1262,6 +1571,29 @@ section,
   }
 }
 
+@media (max-width: 576px) {
+  #ai-service-recommender .card {
+    padding: 0.75rem;
+  }
+
+  #ai-service-recommender .form-label {
+    font-size: 14px;
+  }
+
+  #ai-service-recommender .form-select,
+  #ai-service-recommender .form-control {
+    font-size: 16px;
+    padding: 12px;
+    min-height: 48px;
+  }
+
+  #ai-service-recommender button {
+    min-height: 48px;
+    font-size: 14px;
+    padding: 12px;
+  }
+}
+
 /* Mobile responsive */
 @media (max-width: 768px) {
   .hire-me-btn {
@@ -1473,6 +1805,12 @@ section,
 
   .contact-modal .form-control {
     font-size: 16px;
+    min-height: 48px;
+    padding: 12px;
+  }
+
+  .contact-modal button {
+    min-height: 48px;
   }
 }
 
@@ -1503,6 +1841,23 @@ section,
   .contact {
     background-position: center 50px;
     background-size: contain;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact {
+    background-position: center bottom;
+    background-size: 80%;
+  }
+
+  .contact .info-item {
+    text-align: center;
+    margin: 20px 0;
+  }
+
+  .contact .info-item i {
+    margin-right: 0;
+    margin-bottom: 10px;
   }
 }
 

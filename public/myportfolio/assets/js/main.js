@@ -502,4 +502,36 @@
     });
   }
 
+  // Hire Me Button mobile optimization
+  const hireMeButtonOptimize = () => {
+    const hireMeBtn = document.getElementById('hire-me-btn');
+    const aiFloatBtn = document.getElementById('ai-recommender-float-btn');
+    
+    if (window.innerWidth < 576) {
+      // Stack buttons vertically on very small screens
+      if (hireMeBtn) {
+        hireMeBtn.style.bottom = '20px';
+        hireMeBtn.style.width = '50px';
+        hireMeBtn.style.height = '50px';
+      }
+      if (aiFloatBtn) {
+        aiFloatBtn.style.bottom = '90px';
+      }
+    }
+  };
+
+  hireMeButtonOptimize();
+  window.addEventListener('resize', hireMeButtonOptimize);
+
+  // Prevent zoom on input focus on mobile
+  const inputs = document.querySelectorAll('input, textarea, select');
+  inputs.forEach(input => {
+    input.addEventListener('focus', function() {
+      if (window.innerWidth <= 768) {
+        // Scroll the input into view but don't rely on browser zoom
+        this.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    });
+  });
+
 })();
