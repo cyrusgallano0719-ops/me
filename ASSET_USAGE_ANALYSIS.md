@@ -33,7 +33,6 @@
 
 #### Portfolio Items - App Category (Used in: portfolio.html, portfolio-details.html)
 - **app-1.jpg** - "POS System" project
-- **books-1.jpg** - "One Piece Tournament System" project (labeled as filter-branding)
 - **product-1.jpg** - "React Web Applications" project
 
 #### Portfolio Items - Web Development Screenshots (Used in: portfolio.html)

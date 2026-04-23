@@ -198,6 +198,69 @@
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
 
+  <script>
+    // Dynamic portfolio details based on URL parameter
+    document.addEventListener('DOMContentLoaded', function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const project = urlParams.get('project');
+
+      const projects = {
+        'pos-system': {
+          title: 'POS System',
+          category: 'Web Application',
+          client: 'Local Business',
+          date: 'March 2024',
+          url: '#',
+          description: 'A comprehensive Point of Sale system developed with PHP and MySQL. Features include product management, inventory tracking, sales transactions, receipt generation, and user authentication. The system provides a complete sales workflow from product selection to payment processing.',
+          images: ['assets/img/portfolio/app-1.jpg']
+        },
+        'react-apps': {
+          title: 'React Web Applications',
+          category: 'Web Development',
+          client: 'Various Clients',
+          date: 'Ongoing',
+          url: '#',
+          description: 'Modern web applications built using React with component-based architecture. Integrated Bootstrap and Tailwind CSS for responsive design. Features include state management, API integration, and optimized build processes using Vite for fast development and deployment.',
+          images: ['assets/img/portfolio/product-1.jpg']
+        }
+      };
+
+      if (project && projects[project]) {
+        const data = projects[project];
+
+        // Update project info
+        const infoElement = document.querySelector('.portfolio-info ul');
+        if (infoElement) {
+          infoElement.innerHTML = `
+            <li><strong>Category</strong>: ${data.category}</li>
+            <li><strong>Client</strong>: ${data.client}</li>
+            <li><strong>Project date</strong>: ${data.date}</li>
+            <li><strong>Project URL</strong>: <a href="${data.url}">${data.url}</a></li>
+          `;
+        }
+
+        // Update description
+        const descElement = document.querySelector('.portfolio-description');
+        if (descElement) {
+          descElement.innerHTML = `
+            <h2>${data.title}</h2>
+            <p>${data.description}</p>
+          `;
+        }
+
+        // Update images
+        const swiperWrapper = document.querySelector('.swiper-wrapper');
+        if (swiperWrapper) {
+          swiperWrapper.innerHTML = data.images.map(img => `
+            <div class="swiper-slide">
+              <img src="${img}" alt="${data.title}">
+            </div>
+          `).join('');
+        }
+      }
+    });
+  </script>
+
 </body>
 
 </html>
