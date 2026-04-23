@@ -224,148 +224,8 @@
       if (contactModal && contactModal.classList.contains('active')) {
         contactModal.classList.remove('active');
       }
-      const aiModal = document.getElementById('ai-recommender-modal');
-      if (aiModal && aiModal.classList.contains('active')) {
-        aiModal.classList.remove('active');
-      }
     }
   });
-
-  // AI recomender floating button + modal handlers
-  function ensureAIRecommenderUI() {
-    if (!document.getElementById('ai-recommender-float-btn')) {
-      const floatBtn = document.createElement('button');
-      floatBtn.id = 'ai-recommender-float-btn';
-      floatBtn.className = 'ai-float-btn';
-      floatBtn.title = 'AI Service Recommender';
-      floatBtn.innerHTML = '<i class="bi bi-lightning-charge-fill"></i><span>AI Recommender</span>';
-      document.body.appendChild(floatBtn);
-    }
-
-    if (!document.getElementById('ai-recommender-modal')) {
-      const modal = document.createElement('div');
-      modal.id = 'ai-recommender-modal';
-      modal.className = 'contact-modal';
-      modal.innerHTML = `
-        <div class="modal-content">
-          <button type="button" class="modal-close" id="ai-modal-close">&times;</button>
-          <h3 class="modal-title">AI Service Recommender</h3>
-          <div class="modal-form" style="max-width: 100%;">
-            <div class="form-group">
-              <label for="modal-need">What do you need?</label>
-              <select id="modal-need" class="form-control">
-                <option value="website-starter">Website Starter Package</option>
-                <option value="ecommerce">E-commerce Store</option>
-                <option value="internal-system">Internal System (POS, CRM)</option>
-                <option value="ui-ux-design">UI/UX Design + Branding</option>
-                <option value="ai-media">AI Media Editing</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="modal-budget">Budget?</label>
-              <select id="modal-budget" class="form-control">
-                <option value="low">< ₱15,000 (Good Fit)</option>
-                <option value="medium">₱15,000 - ₱40,000 (Recommended)</option>
-                <option value="high">> ₱40,000 (Premium)</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="modal-timeline">Timeline (days)?</label>
-              <input type="number" id="modal-timeline" class="form-control" min="1" value="7" />
-            </div>
-            <div class="mb-3">
-              <button id="modal-recommender-submit" class="btn btn-primary">Get Recommendation</button>
-              <button id="modal-recommender-quote-btn" class="btn btn-secondary ms-2">Create Quotation</button>
-            </div>
-            <div id="modal-recommender-output" class="badge bg-light text-dark p-3" style="white-space: pre-wrap; min-height: 120px;"></div>
-          </div>
-        </div>
-      `;
-      document.body.appendChild(modal);
-    }
-  }
-
-  ensureAIRecommenderUI();
-
-  const aiFloatBtn = document.getElementById('ai-recommender-float-btn');
-  const aiModal = document.getElementById('ai-recommender-modal');
-  const aiModalClose = document.getElementById('ai-modal-close');
-  const modalNeed = document.getElementById('modal-need');
-  const modalBudget = document.getElementById('modal-budget');
-  const modalTimeline = document.getElementById('modal-timeline');
-  const modalOutput = document.getElementById('modal-recommender-output');
-  const modalRecommendBtn = document.getElementById('modal-recommender-submit');
-  const modalQuoteBtn = document.getElementById('modal-recommender-quote-btn');
-
-  function openRecommender() {
-    // On all pages, show the modal dialog first.
-    if (aiModal) {
-      aiModal.classList.add('active');
-      return;
-    }
-
-    // Fallback: if modal is unavailable, scroll to section when available.
-    const section = document.getElementById('ai-service-recommender');
-    if (section) {
-      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      return;
-    }
-  }
-
-  if (aiFloatBtn) {
-    aiFloatBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      openRecommender();
-    });
-  }
-
-  if (aiModalClose && aiModal) {
-    aiModalClose.addEventListener('click', () => {
-      aiModal.classList.remove('active');
-    });
-
-    aiModal.addEventListener('click', (e) => {
-      if (e.target === aiModal) {
-        aiModal.classList.remove('active');
-      }
-    });
-  }
-
-  const getModalValues = () => ({
-    need: modalNeed?.value ?? '',
-    budget: modalBudget?.value ?? '',
-    timeline: modalTimeline?.value ?? '7'
-  });
-
-  if (modalRecommendBtn && modalOutput) {
-    modalRecommendBtn.addEventListener('click', async (e) => {
-      e.preventDefault();
-      const { need, budget, timeline } = getModalValues();
-      modalOutput.textContent = 'Thinking... generating your recommendation...';
-      try {
-        const responseText = await generateResponse(need, budget, timeline);
-        modalOutput.textContent = responseText;
-      } catch (err) {
-        modalOutput.textContent = 'Unable to generate recommendation right now; please try again later.';
-        console.error('Recommender modal error:', err);
-      }
-    });
-  }
-
-  if (modalQuoteBtn && modalOutput) {
-    modalQuoteBtn.addEventListener('click', async (e) => {
-      e.preventDefault();
-      const { need, budget, timeline } = getModalValues();
-      modalOutput.textContent = 'Creating quotation... please wait...';
-      try {
-        const responseText = await generateResponse(need, budget, timeline);
-        modalOutput.textContent = buildQuotation(need, budget, timeline, responseText);
-      } catch (err) {
-        modalOutput.textContent = 'Unable to build quotation right now; please try again later.';
-        console.error('Quotation modal error:', err);
-      }
-    });
-  }
 
   // AI Service Recommender (interactive flow)
   const recommenderNeed = document.getElementById('recommender-need');
@@ -505,7 +365,6 @@
   // Hire Me Button mobile optimization
   const hireMeButtonOptimize = () => {
     const hireMeBtn = document.getElementById('hire-me-btn');
-    const aiFloatBtn = document.getElementById('ai-recommender-float-btn');
     
     if (window.innerWidth < 576) {
       // Stack buttons vertically on very small screens
@@ -513,9 +372,6 @@
         hireMeBtn.style.bottom = '20px';
         hireMeBtn.style.width = '50px';
         hireMeBtn.style.height = '50px';
-      }
-      if (aiFloatBtn) {
-        aiFloatBtn.style.bottom = '90px';
       }
     }
   };

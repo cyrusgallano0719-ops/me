@@ -60,7 +60,6 @@ Comprehensive mobile device compatibility improvements have been implemented acr
 ### 10. **Floating Buttons**
 - Hire Me button: 55px on mobile vs 65px on desktop
 - Improved positioning to avoid overlap
-- AI Recommender button stacks properly
 - Dynamic resizing based on viewport
 
 ### 11. **Contact & Modals**
